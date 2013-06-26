@@ -73,13 +73,13 @@ Returns
 
 See `startlogin`.
 
-#### logout
+#### `logout`
 Parameters:
 * authtoken
 
 Invalidates a certain authtoken.
 
-#### startlogin
+#### `startlogin`
 Parameters:
 * username
 
@@ -87,9 +87,12 @@ Returns:
 * salt
 * iterations
 
-This endpoint is used to validate the user's password, without transmitting it.
+This endpoint is used to help validate the user's password, without transmitting it. Note
+that it is not required to call this API prior to `login` if `salt`/`iterations` has been
+cached previously, but it isn't necessarily guaranteed that those parameters will be valid
+in the next `login` call.
 
-#### create
+#### `create`
 Creates a new issue. Adds metadata "submitted by" the user identified by "authtoken".
 
 Parameters:
@@ -102,7 +105,7 @@ Parameters:
 Returns:
 * issue
 
-#### update
+#### `update`
 Updates an existing issue. Adds metadata "updated by" the user identified by "authtoken".
 
 Parameters:
@@ -111,7 +114,7 @@ Parameters:
 * summary
 * [fields/attributes]
 
-#### attach
+#### `attach`
 * authtoken [optional]
 * issue
 * summary
