@@ -62,7 +62,17 @@ that are defined the same way for all endpoints where they are used:
 Anywhere that these parameters are used as named, they will not be re-defined in each API
 endpoint. 
 
+#### Globally used return fields:
+* issue
+	* Like the issue parameter, refers to an issue ID.
+* error
+	* If this return field is present, some portion of the requested operation didn't
+succeed. More than one error can occur with a single transaction. This provides a list of
+error objects, each error providing: class, 
+
 #### `login`
+Attempts to authenticate with the backend. See `startlogin`.
+
 Parameters:
 * username
 * pbkdf2key
@@ -70,14 +80,16 @@ Parameters:
 
 Returns
 * authtoken
-
-See `startlogin`.
+* error
 
 #### `logout`
+Invalidates a certain authtoken.
+
 Parameters:
 * authtoken
 
-Invalidates a certain authtoken.
+Returns
+* error
 
 #### `startlogin`
 Parameters:
@@ -97,7 +109,6 @@ Creates a new issue. Adds metadata "submitted by" the user identified by "authto
 
 Parameters:
 * authtoken [optional]
-* issues
 * summary
 * description
 * tags
@@ -110,14 +121,17 @@ Updates an existing issue. Adds metadata "updated by" the user identified by "au
 
 Parameters:
 * authtoken [optional]
-* issues
+* issues _or_ issue
 * summary
 * [fields/attributes]
 
 #### `attach`
+Accepts a file upload and attaches that file to an issue.
+
 * authtoken [optional]
 * issue
 * summary
 * file
 	* I honestly have no idea how this works outside of PHP, so this is subject to change.
 
+### 
