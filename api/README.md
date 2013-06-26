@@ -68,7 +68,8 @@ endpoint.
 * error
 	* If this return field is present, some portion of the requested operation didn't
 succeed. More than one error can occur with a single transaction. This provides a list of
-error objects, each error providing: class, 
+error objects, each error providing: class, descriptive text, and whether the error caused
+the operation to abort.
 
 #### `login`
 Attempts to authenticate with the backend. See `startlogin`.
@@ -134,4 +135,3 @@ Accepts a file upload and attaches that file to an issue.
 * file
 	* I honestly have no idea how this works outside of PHP, so this is subject to change.
 
-### 
