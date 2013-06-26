@@ -17,3 +17,15 @@ Goals:
 * Write as little HTML as possible. Perfect world: less than 100 LOC of HTML.
 * Absolutely _ZERO_ HTML in the backend.
 
+URIs:
+----------------
+A URI endpoint is defined as a directory that contains methods that can be invoked. By
+way of example, an implementation that might be installed on a certain host in the root
+directory might have scripts in a directory like this:
+
+	http://bugs.example.com/api/
+
+And the API for creating a new issue might be located here:
+
+	http://bugs.example.com/api/create
+
