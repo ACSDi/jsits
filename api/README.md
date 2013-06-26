@@ -38,11 +38,11 @@ that are defined the same way for all endpoints where they are used:
 * id
 * > Refers to an issue ID.
 * ids
-* > Refers to a list or range (or combination thereof) of issue IDs.
+> Refers to a list or range (or combination thereof) of issue IDs.
 * summary
 * > Refers to a human-readable text summary of the changes being made.
 * authtoken
-* > Refers to a authentication identifier. This will be returned by the login endpoint.
+> Refers to a authentication identifier. This will be returned by the login endpoint.
 
 Anywhere that these parameters are used as named, they will not be re-defined in each API
 endpoint. 
