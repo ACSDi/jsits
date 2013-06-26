@@ -42,14 +42,18 @@ Nearly all API endpoints accept parameters. (All currently-defined endpoints do.
 parameters that are optional are marked as such. There are certain standard parameters
 that are defined the same way for all endpoints where they are used:
 
-* id
+* issue
 	* Refers to an issue ID.
-* ids
+* issues
 	* Refers to a list or range (or combination thereof) of issue IDs.
+	* A comma indicates two discrete values or ranges to be joined.
+	* A dash indicates an inclusive range.
+	* "1,3-5,7-9" is equivalent to "1,3,4,5,7,8,9".
 * summary
 	* Refers to a human-readable text summary of the changes being made.
 * authtoken
 	* Refers to a authentication identifier. This will be returned by the login endpoint.
+	* This parameter is optional. But ACLs may forbid unauthenticated sessions.
 
 Anywhere that these parameters are used as named, they will not be re-defined in each API
 endpoint. 
@@ -57,13 +61,13 @@ endpoint.
 #### login
 Parameters:
 * username
-* password
+* pbkdf2key
+	* This is a value derived from `startlogin`'s `salt` and `iterations`.
 
 Returns
 * authtoken
 
-In the future, this API will be extended to include a parameter named "hmac". This will be
-a value salted with both the username and a salt value returned by "startlogin".
+See `startlogin`.
 
 #### logout
 Parameters:
@@ -77,14 +81,15 @@ Parameters:
 
 Returns:
 * salt
+* iterations
 
-This endpoint is used to generate a string used for salting a user's password. See `login`.
-
+This endpoint is used to validate the user's password, without transmitting it.
 
 #### create
 Creates a new issue. Adds metadata "submitted by" the user identified by "authtoken".
 
 Parameters:
+* authtoken [optional]
 * id
 * summary
 * description
@@ -94,16 +99,13 @@ Parameters:
 Updates an existing issue. Adds metadata "updated by" the user identified by "authtoken".
 
 Parameters:
+* authtoken [optional]
 * id
 * summary
 * [fields/attributes]
 
-#### setstatus
-* id
-* summary
-* state
-
 #### attach
+* authtoken [optional]
 * id
 * summary
 * file
