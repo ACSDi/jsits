@@ -1,16 +1,23 @@
 # General API
 
 ## Rules:
-* Requests to the backend are always made via HTTP. No exceptions.
-* Parameters passed to the backend are always passed via POST. No exceptions.
-* Results from the backend are always returned via JSON. No exceptions.
+All rules defined here are set *without exceptions*. That means there is not a single
+scenario where these rules will be broken. Any time this isn't true, the results are
+undefined and unsupported.
+
+* Requests to the backend are always made via HTTP.
+* Parameters passed to the backend are always passed via POST.
+* Results from the backend are always returned via JSON.
+* Issue fields are not defined outside of a schema.
 
 This means:
 * Results will never be (sanely) cached. This is correct.
 * Javascript (the target frontend language) will always have great support.
 * Other languages (such as Python, PHP, Perl, Ruby, Go...) will also have good support.
+* Backends and frontends do not need to care about issue fields.
 
 ## Goals:
+* Issue systems can be defined by a schema. No patches required.
 * Write as little HTML as possible. Perfect world: less than 100 LOC of HTML.
 * Absolutely _ZERO_ HTML in the backend.
 
@@ -40,7 +47,7 @@ that are defined the same way for all endpoints where they are used:
 * ids
 	* Refers to a list or range (or combination thereof) of issue IDs.
 * summary
-* * Refers to a human-readable text summary of the changes being made.
+	* Refers to a human-readable text summary of the changes being made.
 * authtoken
 	* Refers to a authentication identifier. This will be returned by the login endpoint.
 
@@ -100,5 +107,5 @@ Parameters:
 * id
 * summary
 * file
-* > I honestly have no idea how this works outside of PHP, so this is subject to change.
+	* I honestly have no idea how this works outside of PHP, so this is subject to change.
 
